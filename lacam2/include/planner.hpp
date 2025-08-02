@@ -73,7 +73,7 @@ struct Planner {
   uint loop_cnt;      // auxiliary
 
   // used in PIBT
-  std::vector<std::array<Vertex*, 5> > C_next;  // next locations, used in PIBT
+  std::vector<std::array<Vertex*, 7> > C_next;  // next locations, used in PIBT (support up to 6 neighbors + self)
   std::vector<float> tie_breakers;              // random values, used in PIBT
   Agents A;
   Agents occupied_now;                          // for quick collision checking

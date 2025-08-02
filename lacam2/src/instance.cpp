@@ -2,8 +2,9 @@
 
 Instance::Instance(const std::string& map_filename,
                    const std::vector<uint>& start_indexes,
-                   const std::vector<uint>& goal_indexes)
-    : G(map_filename),
+                   const std::vector<uint>& goal_indexes,
+                   GridType gt, HexConfig hc)
+    : G(map_filename, gt, hc),
       starts(Config()),
       goals(Config()),
       N(start_indexes.size())
@@ -17,8 +18,9 @@ static const std::regex r_instance =
     std::regex(R"(\d+\t.+\.map\t\d+\t\d+\t(\d+)\t(\d+)\t(\d+)\t(\d+)\t.+)");
 
 Instance::Instance(const std::string& scen_filename,
-                   const std::string& map_filename, const uint _N)
-    : G(Graph(map_filename)), starts(Config()), goals(Config()), N(_N)
+                   const std::string& map_filename, const uint _N,
+                   GridType gt, HexConfig hc)
+    : G(Graph(map_filename, gt, hc)), starts(Config()), goals(Config()), N(_N)
 {
   // load start-goal pairs
   std::ifstream file(scen_filename);
@@ -52,8 +54,8 @@ Instance::Instance(const std::string& scen_filename,
 }
 
 Instance::Instance(const std::string& map_filename, std::mt19937* MT,
-                   const uint _N)
-    : G(Graph(map_filename)), starts(Config()), goals(Config()), N(_N)
+                   const uint _N, GridType gt, HexConfig hc)
+    : G(Graph(map_filename, gt, hc)), starts(Config()), goals(Config()), N(_N)
 {
   // random assignment
   const auto V_size = G.size();

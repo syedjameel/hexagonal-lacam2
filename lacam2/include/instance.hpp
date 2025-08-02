@@ -16,13 +16,17 @@ struct Instance {
   // for testing
   Instance(const std::string& map_filename,
            const std::vector<uint>& start_indexes,
-           const std::vector<uint>& goal_indexes);
+           const std::vector<uint>& goal_indexes,
+           GridType gt = GridType::SQUARE,
+           HexConfig hc = HexConfig::ODD_ROW);
   // for MAPF benchmark
   Instance(const std::string& scen_filename, const std::string& map_filename,
-           const uint _N = 1);
+           const uint _N = 1, GridType gt = GridType::SQUARE,
+           HexConfig hc = HexConfig::ODD_ROW);
   // random instance generation
   Instance(const std::string& map_filename, std::mt19937* MT,
-           const uint _N = 1);
+           const uint _N = 1, GridType gt = GridType::SQUARE,
+           HexConfig hc = HexConfig::ODD_ROW);
   ~Instance() {}
 
   // simple feasibility check of instance

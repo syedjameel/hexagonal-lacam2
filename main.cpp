@@ -1,6 +1,18 @@
 #include <argparse/argparse.hpp>
 #include <lacam2.hpp>
 
+GridType stringToGridType(const std::string& str) {
+  if (str == "hex") return GridType::HEX;
+  return GridType::SQUARE;
+}
+
+HexConfig stringToHexConfig(const std::string& str) {
+  if (str == "even-row") return HexConfig::EVEN_ROW;
+  if (str == "odd-column") return HexConfig::ODD_COLUMN;
+  if (str == "even-column") return HexConfig::EVEN_COLUMN;
+  return HexConfig::ODD_ROW;
+}
+
 int main(int argc, char* argv[])
 {
   // arguments parser
@@ -36,6 +48,14 @@ int main(int argc, char* argv[])
   program.add_argument("-r", "--restart_rate")
       .help("restart rate")
       .default_value(std::string("0.001"));
+  
+  // grid type parameters
+  program.add_argument("-g", "--grid_type")
+      .help("grid type: square or hex")
+      .default_value(std::string("square"));
+  program.add_argument("-hc", "--hex_config")
+      .help("hexagonal configuration: odd-row, even-row, odd-column, even-column")
+      .default_value(std::string("odd-row"));
 
   try {
     program.parse_known_args(argc, argv);
@@ -56,8 +76,12 @@ int main(int argc, char* argv[])
   const auto output_name = program.get<std::string>("output");
   const auto log_short = program.get<bool>("log_short");
   const auto N = std::stoi(program.get<std::string>("num"));
-  const auto ins = scen_name.size() > 0 ? Instance(scen_name, map_name, N)
-                                        : Instance(map_name, &MT, N);
+  const auto grid_type_str = program.get<std::string>("grid_type");
+  const auto hex_config_str = program.get<std::string>("hex_config");
+  const auto grid_type = stringToGridType(grid_type_str);
+  const auto hex_config = stringToHexConfig(hex_config_str);
+  const auto ins = scen_name.size() > 0 ? Instance(scen_name, map_name, N, grid_type, hex_config)
+                                        : Instance(map_name, &MT, N, grid_type, hex_config);
   const auto objective =
       static_cast<Objective>(std::stoi(program.get<std::string>("objective")));
   const auto restart_rate = std::stof(program.get<std::string>("restart_rate"));
