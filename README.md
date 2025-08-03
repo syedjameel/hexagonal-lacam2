@@ -7,6 +7,7 @@ Do you want the power?
 LaCAM* could be the answer.
 
 This is a code repository of the paper ["Improving LaCAM for Scalable Eventually Optimal Multi-Agent Pathfinding"](https://kei18.github.io/lacam2/) (IJCAI-23), extended from from [the LaCAM repo](https://kei18.github.io/lacam/) presented at AAAI-23.
+Now supports both square and hexagonal grids!
 
 ## Building
 
@@ -29,6 +30,7 @@ An example setup is available in `assets/`.
 
 ## Usage
 
+### Square Grid (Default)
 no optimization (random starts/goals):
 
 ```sh
@@ -55,6 +57,20 @@ sum-of-loss optimization:
 solved: 1ms     makespan: 11 (lb=2, ub=5.5)     sum_of_costs: 15 (lb=5, ub=3)   sum_of_loss: 15 (lb=5, ub=3)
 ```
 
+### Hexagonal Grid
+```sh
+# Using hexagonal grid with odd-row configuration (default)
+build/main -m assets/hex-4-4.map -i assets/hex-4-4.scen -N 2 -g hex
+
+# Using hexagonal grid with specific configuration
+build/main -m assets/hex-4-4.map -i assets/hex-4-4.scen -N 2 -g hex -hc odd-row
+build/main -m assets/hex-4-4.map -i assets/hex-4-4.scen -N 2 -g hex -hc even-row
+build/main -m assets/hex-4-4.map -i assets/hex-4-4.scen -N 2 -g hex -hc odd-column
+build/main -m assets/hex-4-4.map -i assets/hex-4-4.scen -N 2 -g hex -hc even-column
+```
+
+The result will be saved in `build/result.txt`.
+
 You can find details of all parameters with:
 ```sh
 build/main --help
@@ -63,6 +79,25 @@ build/main --help
 ## Visualizer
 
 This repository is compatible with [@Kei18/mapf-visualizer](https://github.com/kei18/mapf-visualizer).
+For example,
+
+```sh
+mapf-visualizer assets/random-32-32-10.map build/result.txt
+```
+
+## Grid Types
+
+### Square Grid
+The traditional square grid with 4-connected movement (up, down, left, right).
+
+### Hexagonal Grid
+Support for hexagonal grids with 6-connected movement. Four different coordinate systems are supported:
+- **odd-row**: Odd rows are offset to the right
+- **even-row**: Even rows are offset to the right  
+- **odd-column**: Odd columns are offset down
+- **even-column**: Even columns are offset down
+
+The hexagonal grid implementation follows the offset coordinate system described in [Red Blob Games' Hexagonal Grids](https://www.redblobgames.com/grids/hexagons/#neighbors-offset).
 
 ## Experiments
 
