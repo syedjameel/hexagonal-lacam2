@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: >-
+  If you use this solver, please cite this record and the upstream
+  LaCAM2 paper listed under references.
+type: software
+title: "Hexagonal LaCAM2"
+version: 1.0.0
+date-released: 2026-10-19
+license: MIT
+doi: 10.5281/zenodo.23475834
+authors:
+  - family-names: Syed
+    given-names: Jameel Ahmed
+    affiliation: Innopolis University
+  - family-names: Damindarov
+    given-names: Ruslan
+    affiliation: Innopolis University
+  - family-names: Maloletov
+    given-names: Alexander
+    affiliation: Innopolis University
+keywords:
+  - multi-agent path finding
+  - hexagonal grids
+  - LaCAM2
+references:
+  - type: software
+    title: "lacam2"
+    authors:
+      - family-names: Okumura
+        given-names: Keisuke
+    repository-code: "https://github.com/Kei18/lacam2"
+    commit: 623658542d82a3d4a78d888235178d220572d5fc
+    license: MIT
+  - type: conference-paper
+    title: "Improving LaCAM for Scalable Eventually Optimal Multi-Agent Pathfinding"
+    authors:
+      - family-names: Okumura
+        given-names: Keisuke
+    collection-title: "Proceedings of the Thirty-Second International Joint Conference on Artificial Intelligence (IJCAI)"
+    start: 243
+    end: 251
+    year: 2023
+    doi: 10.24963/ijcai.2023/28

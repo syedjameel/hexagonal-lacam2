@@ -1,7 +1,9 @@
 lacam2
 ---
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-[![CI](https://github.com/Kei18/lacam2/actions/workflows/ci.yml/badge.svg)](https://github.com/Kei18/lacam2/actions/workflows/ci.yml)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23475834.svg)](https://doi.org/10.5281/zenodo.23475834)
+
+> **Hexagonal LaCAM2.** This repository is a modified version of [Kei18/lacam2](https://github.com/Kei18/lacam2) by Keisuke Okumura, the code of the paper "Improving LaCAM for Scalable Eventually Optimal Multi-Agent Pathfinding" (IJCAI-23). It adds hexagonal grids (odd-row, even-row, odd-column and even-column layouts) to the original square grids. Version 1.0.0 is archived on Zenodo: [10.5281/zenodo.23475834](https://doi.org/10.5281/zenodo.23475834). If you use it, please cite both the original paper and this archive (see [CITATION.cff](CITATION.cff)).
 
 Do you want the power?
 LaCAM* could be the answer.
@@ -16,7 +18,7 @@ All you need is [CMake](https://cmake.org/) (≥v3.16). The code is written in C
 First, clone this repo with submodules.
 
 ```sh
-git clone --recursive https://github.com/Kei18/lacam2.git && cd lacam2
+git clone --recursive https://github.com/syedjameel/hexagonal-lacam2.git && cd hexagonal-lacam2
 ```
 
 Then, build the project.
